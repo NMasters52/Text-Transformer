@@ -4,15 +4,20 @@ const capatalize = document.getElementById('transformBtn');
 const output = document.getElementById('transformedInput');
 
 //create event listner
-capatalize.addEventListener('click', transfromText);
+capatalize.addEventListener('click', transformText);
 
 //create function to handle the event 
-function transfromText() {
+function transformText() {
   const text = textInput.value;
+
+  if (text === '' || !text.trim()) {
+    output.textContent = "Please enter valid text submission.";
+    return;
+  }
 
   const transformedText = textTransformer(text);
 
-  output.innerHTML = transformedText;
+  output.textContent = transformedText;
 }
 
 
@@ -20,7 +25,7 @@ function transfromText() {
 function textTransformer(text) {
   const words = text.toLowerCase().split(' ');
 
-  for (i = 0; i < words.length; i++) {
+  for (let i = 0; i < words.length; i++) {
     words[i] = words[i][0].toUpperCase() + words[i].substring(1);
   }
 
